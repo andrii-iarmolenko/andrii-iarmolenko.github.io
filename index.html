@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,20 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0a0e27;
-            --secondary: #1a1f3a;
+            --primary: #1a1a1a;
+            --secondary: #2a2a2a;
             --accent: #00d4ff;
             --accent-warm: #ff6b35;
             --text: #e8eaf6;
             --text-dim: #9094a8;
-            --grid: rgba(0, 212, 255, 0.1);
             
-            /* Section-specific colors */
-            --bg-about: linear-gradient(180deg, #0a0e27 0%, #0d1129 100%);
-            --bg-projects: linear-gradient(180deg, #0d1129 0%, #0f132b 100%);
-            --bg-personal: linear-gradient(180deg, #0f132b 0%, #11152d 100%);
-            --bg-resume: linear-gradient(180deg, #11152d 0%, #13172f 100%);
-            --bg-contact: linear-gradient(180deg, #13172f 0%, #050812 100%);
+            /* Section-specific colors - grey to black gradient */
+            --bg-about: linear-gradient(180deg, #4a4a4a 0%, #3a3a3a 100%);
+            --bg-projects: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+            --bg-personal: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+            --bg-resume: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            --bg-contact: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
         }
 
         * {
@@ -31,32 +30,10 @@
 
         body {
             font-family: 'IBM Plex Mono', monospace;
-            background: var(--primary);
+            background: #2a2a2a;
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* Animated grid background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(var(--grid) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
         }
 
         /* Navigation */
@@ -64,7 +41,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 14, 39, 0.95);
+            background: rgba(42, 42, 42, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid var(--accent);
@@ -73,7 +50,7 @@
         }
 
         nav.scrolled {
-            background: rgba(5, 8, 18, 0.98);
+            background: rgba(0, 0, 0, 0.98);
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
         }
 
