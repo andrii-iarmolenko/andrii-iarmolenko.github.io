@@ -303,6 +303,39 @@
             border-radius: 8px;
             margin-bottom: 1.5rem;
             border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: opacity 0.25s ease;
+        }
+
+        /* Multi-Image Gallery inside Project Card */
+        .project-gallery-main {
+            margin-bottom: 0.6rem !important;
+        }
+
+        .project-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-thumbnails img.thumb {
+            width: 100%;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 0;
+            cursor: pointer;
+            opacity: 0.55;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .project-thumbnails img.thumb:hover,
+        .project-thumbnails img.thumb.active {
+            opacity: 1;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
         }
 
         .project-card h3 {
@@ -510,14 +543,15 @@
     <!-- About Section -->
     <section id="about">
         <h1 class="hero-title">ANDRII IARMOLENKO</h1>
-        <p class="hero-subtitle">Mechanical Engineering</p>
+        <p class="hero-subtitle">Mechanical Engineering | Robotics & Hardware Design</p>
         <div class="project-card">
-        <img src="face3.jpg" alt="My Photo"></div>
+            <img src="face3.jpg" alt="My Photo">
+        </div>
         <p class="hero-description">
-            Mechanical Engineering student (Senior) at The City College of New York with  knowledge   and  skills in
-            finite element analysis, fluid mechanics, heat transfer, materials science, AI/ML. Experienced in CAD design, optical system 
-            optimization, and Arduino-based sensor systems. Currently working on wearable exoskeleton technology at the BIOWEAR Lab. 
-            Passionate about applying engineering principles to solve real-world problems through research and innovation.
+            Graduating Mechanical Engineering student (May 2027) at The City College of New York focused on robotics, 
+            hardware design, and electromechanical sensor integration. Experienced in CAD modeling, wearable exoskeleton research 
+            at the BIOWEAR Lab, and aerospace prototyping for AIAA Design-Build-Fly, backed by hands-on professional trade 
+            experience as a plumber mechanic. Passionate about designing, building, and testing complex physical systems.
         </p>
         <p class="hero-subtitle">Technical Skills And Software</p>
         <div class="tech-stack">
@@ -529,118 +563,153 @@
             <span class="tech-badge">LabVIEW</span>
             <span class="tech-badge">Python</span>
             <span class="tech-badge">C++</span>
-            <span class="tech-badge">FEA</span>
+            <span class="tech-badge">ESP32</span>
             <span class="tech-badge">Arduino</span>
+            <span class="tech-badge">KiCad</span>
+            <span class="tech-badge">FEA</span>
+            <span class="tech-badge">3D Printing</span>
+            <span class="tech-badge">CNC</span>
         </div>
     </section>
 
     <!-- Projects Section with Integrated Gallery -->
     <section id="projects">
-    <h2>Research & Projects</h2>
-    <div class="projects-grid">
-        <div class="project-card">
-            <span class="project-number">01</span>
-            <img src="exo_boot.png" alt="Wearable Exoskeleton Sensor System">
-            <h3>Wearable Exoskeleton Sensor System</h3>
-            <p>
-                Developing Arduino-controlled sensing system for a wearable exoskeleton at BIOWEAR Lab. Designed 
-                multiplexer layouts to interface multiple sensors with a single microcontroller, measuring resistance 
-                and force at various points. Created 3D CAD models for sensor and electronics enclosures optimized 
-                for protection, ergonomics, and ease of assembly.
-            </p>
-            <div class="project-tags">
-                <span class="tag">Arduino</span>
-                <span class="tag">3D CAD</span>
-                <span class="tag">Sensor Systems</span>
-                <span class="tag">Data Acquisition</span>
+        <h2>Research & Projects</h2>
+        <div class="projects-grid">
+            <!-- PROJECT 01: AIAA Design-Build-Fly -->
+            <div class="project-card">
+                <span class="project-number">01</span>
+                <img src="dbf_aircraft.png" alt="AIAA Design-Build-Fly Propulsion & Sensor Pod">
+                <h3>AIAA Design-Build-Fly: Propulsion & Telemetry Pod</h3>
+                <p>
+                    Built an instrumented motor dynamometer test bench using modular aluminum extrusions, a load cell, and an ESP32 
+                    to log thrust, RPM, current, and voltage across 0–100% throttle sweeps—improving static thrust by 18% while 
+                    mitigating thermal throttling. Engineered a vibration-damped deployable sensor pod in SolidWorks and wired a 
+                    central power distribution board controlled via RC telemetry.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">SolidWorks</span>
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Load Cells</span>
+                    <span class="tag">Aerospace</span>
+                    <span class="tag">RC Telemetry</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card">
-            <span class="project-number">02</span>
-            <img src="lidar_poster.jpg" alt="LiDAR Optical System Optimization">
-            <h3>LiDAR Optical System Optimization</h3>
-            <p>
-                Improved LiDAR accuracy using Varioptic liquid lenses and a two-lens optical system through NSF REU 
-                program. Simulated and optimized optical configurations using Zemax and MATLAB. Enhanced signal processing 
-                algorithms for detecting small, fast-moving targets. Optimized LabVIEW routines for real-time data 
-                acquisition and control.
-            </p>
-            <div class="project-tags">
-                <span class="tag">Zemax</span>
-                <span class="tag">MATLAB</span>
-                <span class="tag">LabVIEW</span>
-                <span class="tag">Optical Systems</span>
-                <span class="tag">Signal Processing</span>
+            <!-- PROJECT 02: Exoskeleton (With 3-Image Interactive Gallery: exo_boot.png, boot.png, boot_pcb.png) -->
+            <div class="project-card">
+                <span class="project-number">02</span>
+                <img id="exo-main-img" class="project-gallery-main" src="exo_boot.png" alt="Wearable Exoskeleton Sensor System">
+                <div class="project-thumbnails">
+                    <img src="exo_boot.png" alt="Exoskeleton Boot Assembly" class="thumb active" onclick="swapExoImage(this)">
+                    <img src="boot.png" alt="Sensor Enclosure & Boot Hardware" class="thumb" onclick="swapExoImage(this)">
+                    <img src="boot_pcb.png" alt="Multiplexed FSR PCB Layout" class="thumb" onclick="swapExoImage(this)">
+                </div>
+                <h3>Wearable Exoskeleton Sensor System</h3>
+                <p>
+                    Designed a 16-channel multiplexed Force-Sensitive Resistor (FSR) array powered by an ESP32 at the BIOWEAR Lab 
+                    to map plantar pressure for an assistive ankle exoskeleton. Integrated CD74HC4067 analog multiplexers, hardware 
+                    pull-down networks, and digital filtering to capture stable gait force data at 100 Hz. Modeled and 3D-printed 
+                    impact-resistant enclosures in SolidWorks and built a lossless Python serial data logger.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">SolidWorks</span>
+                    <span class="tag">FSR Array</span>
+                    <span class="tag">PCB Design</span>
+                    <span class="tag">Python</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card">
-            <span class="project-number">03</span>
-            <img src="bicycle.png" alt="Bicycle Frame FEA Analysis">
-            <h3>Bicycle Frame FEA Analysis</h3>
-            <p>
-                Created detailed 3D model of a bicycle frame for Finite Element Analysis course. Performed structural 
-                analysis to evaluate stress distribution, deflection, and safety factors under various loading conditions. 
-                Optimized frame geometry for weight reduction while maintaining structural integrity.
-            </p>
-            <div class="project-tags">
-                <span class="tag">SolidWorks</span>
-                <span class="tag">FEA</span>
-                <span class="tag">3D Modeling</span>
-                <span class="tag">Structural Analysis</span>
+            <!-- PROJECT 03: LiDAR -->
+            <div class="project-card">
+                <span class="project-number">03</span>
+                <img src="lidar_poster.jpg" alt="LiDAR Optical System Optimization">
+                <h3>LiDAR Optical System Optimization</h3>
+                <p>
+                    Improved LiDAR accuracy using Varioptic liquid lenses and a two-lens optical system through the NSF REU 
+                    and MobilizeGreen programs. Simulated and optimized optical configurations using Zemax and MATLAB to reduce beam 
+                    divergence, validated against benchtop ray-path measurements. Enhanced signal processing algorithms for detecting 
+                    small, fast-moving targets and automated LabVIEW routines for real-time data collection.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">Zemax</span>
+                    <span class="tag">MATLAB</span>
+                    <span class="tag">LabVIEW</span>
+                    <span class="tag">Optical Systems</span>
+                    <span class="tag">Signal Processing</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card">
-            <span class="project-number">04</span>
-            <img src="cad_clock.png" alt="ESP32 Clock">
-            <h3>ESP32 Desktop Clock</h3>
-            <p>
-                Developed a WiFi-connected clock system built around an ESP32-C3 microcontroller, 
-                featuring a 128×64 OLED display and piezo buzzer. Designed firmware in C++ handling NTP time synchronization, 
-                alarm scheduling, countdown timers, and real-time serial command parsing. Built a browser-based control interface served 
-                directly from the microcontroller using WebSocket communication for live clock updates, message display, and remote buzzer control. 
-                Modeled enclosure components in CAD optimized for compact electronics layout and OLED/buzzer accessibility.
-            </p>
-            <div class="project-tags">
-                <span class="tag">ESP32</span>
-                <span class="tag">C++</span>
-                <span class="tag">WebSocket</span>
-                <span class="tag">3D CAD</span>
+            <!-- PROJECT 04: Bicycle Frame FEA -->
+            <div class="project-card">
+                <span class="project-number">04</span>
+                <img src="bicycle.png" alt="Bicycle Frame FEA Analysis">
+                <h3>Bicycle Frame FEA Analysis</h3>
+                <p>
+                    Created detailed 3D model of a bicycle frame for Finite Element Analysis course. Performed structural 
+                    analysis to evaluate stress distribution, deflection, and safety factors under various loading conditions. 
+                    Optimized frame geometry for weight reduction while maintaining structural integrity.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">SolidWorks</span>
+                    <span class="tag">FEA</span>
+                    <span class="tag">3D Modeling</span>
+                    <span class="tag">Structural Analysis</span>
+                </div>
             </div>
-        </div>
 
-        <div class="project-card">
-            <span class="project-number">05</span>
-            <img src="phone_stand.png" alt="3D Printed Workshop Solutions">
-            <h3>3D Printed Workshop Solutions</h3>
-            <p>
-                Designed and fabricated custom workspace organizers using CAD and 3D printing. Created phone stands, 
-                laptop stands, and tool organizers optimized for ergonomics and efficient use of space. Each piece 
-                is iteratively refined based on daily use and practical feedback.
-            </p>
-            <div class="project-tags">
-                <span class="tag">CAD Design</span>
-                <span class="tag">3D Printing</span>
-                <span class="tag">Product Design</span>
-                <span class="tag">Prototyping</span>
+            <!-- PROJECT 05: ESP32 Clock -->
+            <div class="project-card">
+                <span class="project-number">05</span>
+                <img src="cad_clock.png" alt="ESP32 Clock">
+                <h3>ESP32 Desktop Clock</h3>
+                <p>
+                    Developed a WiFi-connected clock system built around an ESP32-C3 microcontroller, 
+                    featuring a 128×64 OLED display and piezo buzzer. Designed firmware in C++ handling NTP time synchronization, 
+                    alarm scheduling, countdown timers, and real-time serial command parsing. Built a browser-based control interface served 
+                    directly from the microcontroller using WebSocket communication for live clock updates, message display, and remote buzzer control. 
+                    Modeled enclosure components in CAD optimized for compact electronics layout and OLED/buzzer accessibility.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">WebSocket</span>
+                    <span class="tag">3D CAD</span>
+                </div>
+            </div>
+
+            <!-- PROJECT 06: 3D Printed Workshop Solutions -->
+            <div class="project-card">
+                <span class="project-number">06</span>
+                <img src="phone_stand.png" alt="3D Printed Workshop Solutions">
+                <h3>3D Printed Workshop Solutions</h3>
+                <p>
+                    Designed and fabricated custom workspace organizers using CAD and 3D printing. Created phone stands, 
+                    laptop stands, and tool organizers optimized for ergonomics and efficient use of space. Each piece 
+                    is iteratively refined based on daily use and practical feedback.
+                </p>
+                <div class="project-tags">
+                    <span class="tag">CAD Design</span>
+                    <span class="tag">3D Printing</span>
+                    <span class="tag">Product Design</span>
+                    <span class="tag">Prototyping</span>
+                </div>
             </div>
         </div>
-    </div>
 
         <div style="margin-top: 4rem;">
             <h3 style="font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: var(--accent); margin-bottom: 2rem;">Conference Presentations</h3>
             <div class="resume-item">
-                <h4>Emerging Researchers National Conference</h4>
+                <h4>Emerging Researchers National Conference (ERN 2025)</h4>
                 <p class="resume-meta">April 2025</p>
                 <p style="color: var(--text-dim); padding-left: 1.5rem;">
-                    Presented research on improving LiDAR precision using Varioptic liquid lenses and a two-lens system, 
+                    Presented research on optimizing LiDAR optical precision using Varioptic liquid lenses in a dual-lens system, 
                     highlighting modeling, experimental validation, and data analysis.
                 </p>
             </div>
             <div class="resume-item">
-                <h4>Joint Mathematics Meeting</h4>
+                <h4>Joint Mathematics Meeting (JMM 2024)</h4>
                 <p class="resume-meta">January 2024</p>
                 <p style="color: var(--text-dim); padding-left: 1.5rem;">
                     Presented research on using the Gini Coefficient to rank AI models, including methodology, 
@@ -659,10 +728,10 @@
                 <h3>Education</h3>
                 <div class="resume-item">
                     <h4>Bachelor of Engineering, Mechanical Engineering</h4>
-                    <p class="resume-meta">The City College of New York (CCNY) | Expected December 2026 | GPA: 3.7/4.0</p>
+                    <p class="resume-meta">The City College of New York (CCNY) | Expected May 2027 | GPA: 3.7/4.0</p>
                     <ul>
-                        <li>Relevant Coursework: Heat Transfer, Thermodynamics, Fluid Mechanics, Computer-Aided Design, Materials Science, Finite Element Analysis</li>
-                        <li>Member: American Society of Mechanical Engineers (ASME), Tau Beta Pi</li>
+                        <li><strong>Relevant Coursework:</strong> Finite Element Analysis (FEA), Fluid Mechanics, Heat Transfer, Manufacturing Processes, Computer-Aided Design (CAD), Materials Science</li>
+                        <li><strong>Affiliations:</strong> Tau Beta Pi Engineering Honor Society, American Society of Mechanical Engineers (ASME), American Institute of Aeronautics and Astronautics (AIAA)</li>
                     </ul>
                 </div>
                 <div class="resume-item">
@@ -674,36 +743,47 @@
             <!-- Experience -->
             <div class="resume-section">
                 <h3>Research & Engineering Experience</h3>
+
+                <div class="resume-item">
+                    <h4>Mechanical Test Engineer</h4>
+                    <p class="resume-meta">AIAA Design-Build-Fly, CCNY | September 2025 - Present</p>
+                    <ul>
+                        <li>Built an instrumented <strong>motor dynamometer test bench</strong> using modular aluminum extrusions and a <strong>load cell</strong>; programmed an <strong>ESP32</strong> to log thrust, RPM, current, and voltage across <strong>0–100% throttle sweeps</strong></li>
+                        <li>Selected optimal motor and propeller configurations by analyzing <strong>thrust-to-weight</strong> test data, increasing <strong>static thrust by 18%</strong> while mitigating <strong>thermal throttling</strong></li>
+                        <li>Engineered a deployable, <strong>vibration-damped sensor pod</strong> in <strong>SolidWorks</strong> to isolate in-flight telemetry hardware from airframe resonance</li>
+                        <li>Designed and wired a central <strong>power distribution board</strong> and <strong>RC receiver interface</strong> to remotely control payload electronics during flight testing</li>
+                    </ul>
+                </div>
+
                 <div class="resume-item">
                     <h4>Research Assistant</h4>
                     <p class="resume-meta">BIOWEAR Lab, CCNY | October 2025 - Present</p>
                     <ul>
-                        <li>Develop Arduino-controlled sensing for a wearable exoskeleton, measuring resistance and force at multiple points</li>
-                        <li>Design sensor interconnections and multiplexer layouts to interface many sensors with one microcontroller</li>
-                        <li>Model and refine sensor and electronics enclosures in 3D CAD for protection, ergonomics, and assembly</li>
-                        <li>Support data acquisition, basic signal processing, and documentation of tests and results</li>
+                        <li>Designed a <strong>16-channel multiplexed Force-Sensitive Resistor (FSR) array</strong> powered by an <strong>ESP32</strong> to map plantar pressure distributions for an <strong>assistive ankle exoskeleton</strong></li>
+                        <li>Integrated <strong>CD74HC4067 analog multiplexers</strong> to route 16 sensor channels into a single <strong>ADC pin</strong>, significantly reducing wiring bulk and mechanical strain across the ankle joint</li>
+                        <li>Implemented <strong>hardware pull-down resistor networks</strong> and <strong>digital filtering</strong> algorithms to eliminate floating-ground crosstalk, achieving stable gait force capture at <strong>100 Hz</strong></li>
+                        <li>Modeled and <strong>3D-printed</strong> ergonomic, impact-resistant <strong>sensor enclosures</strong> in <strong>SolidWorks</strong> to withstand repeated high-load foot strikes</li>
+                        <li>Developed a <strong>Python serial data acquisition pipeline</strong> with automated timestamping, resolving COM port handshake drops for <strong>lossless logging</strong> during extended gait trials</li>
                     </ul>
                 </div>
 
                 <div class="resume-item">
-                    <h4>Research Student</h4>
+                    <h4>Research Fellow</h4>
                     <p class="resume-meta">MobilizeGreen Fellowship, CCNY | June 2025 - August 2025</p>
                     <ul>
-                        <li>Simulated and optimized LiDAR optical systems using Zemax and MATLAB</li>
-                        <li>Collected and analyzed experimental data to select optimal optical configurations</li>
-                        <li>Compared simulated and measured results and recommended design adjustments</li>
-                        <li>Presented methods, results, and trade-offs in a final research presentation</li>
+                        <li>Simulated and optimized <strong>LiDAR optical configurations</strong> in <strong>Zemax</strong> and <strong>MATLAB</strong> to minimize <strong>laser beam divergence</strong> and increase long-range target resolution</li>
+                        <li>Constructed <strong>optical benchtop setups</strong> to empirically validate simulated ray-path models against physical <strong>beam-profiling measurements</strong></li>
                     </ul>
                 </div>
 
                 <div class="resume-item">
-                    <h4>Research Student</h4>
+                    <h4>Undergraduate Researcher</h4>
                     <p class="resume-meta">NSF REU Program, CCNY | June 2024 - May 2025</p>
                     <ul>
-                        <li>Improved LiDAR accuracy using Varioptic liquid lenses and a two-lens system</li>
-                        <li>Optimized LabVIEW routines for real-time data acquisition and control</li>
-                        <li>Enhanced MATLAB signal-processing scripts for detecting small, fast-moving targets</li>
-                        <li>Produced technical reports and weekly presentations for a multidisciplinary team</li>
+                        <li>Enhanced <strong>LiDAR depth-ranging precision</strong> by integrating <strong>Varioptic electrowetting liquid lenses</strong> into an adaptive dual-lens optical assembly</li>
+                        <li>Automated multi-axis optical calibration and test sequences in <strong>LabVIEW</strong>, significantly reducing experimental <strong>data collection cycle time</strong></li>
+                        <li>Refined <strong>MATLAB signal-processing</strong> and peak-detection algorithms to reliably track small, high-velocity targets in noisy environments</li>
+                        <li>Authored <strong>technical reports</strong> and delivered weekly research updates across a multidisciplinary optics and mechanical engineering team</li>
                     </ul>
                 </div>
 
@@ -711,10 +791,10 @@
                     <h4>Plumber Mechanic</h4>
                     <p class="resume-meta">Real Plumbing Corp., New York, NY | February 2015 - June 2018</p>
                     <ul>
-                        <li>Promoted from apprentice to mechanic within 12 months</li>
-                        <li>Installed and serviced plumbing systems in commercial and residential buildings to code</li>
-                        <li>Diagnosed and resolved flow, pressure, and temperature issues in piping systems</li>
-                        <li>Coordinated with general contractors, HVAC teams, and electricians to keep projects on schedule</li>
+                        <li>Earned rapid promotion from <strong>apprentice to lead mechanic within 12 months</strong> based on technical diagnostic capability and field execution</li>
+                        <li>Diagnosed and resolved complex <strong>fluid flow, pressure, and thermal faults</strong> across high-pressure commercial <strong>fire-suppression</strong> and residential piping systems</li>
+                        <li>Led system commissioning, mechanical assembly, and <strong>hydrostatic pressure testing</strong> in strict compliance with <strong>NYC building and safety codes</strong></li>
+                        <li>Coordinated daily on-site installations with <strong>general contractors, electricians, and HVAC teams</strong> to deliver multi-week infrastructure projects on schedule</li>
                     </ul>
                 </div>
             </div>
@@ -724,11 +804,9 @@
                 <h3>Technical Skills</h3>
                 <div class="resume-item">
                     <ul>
-                        <li><strong>CAD Software:</strong> SolidWorks, Fusion 360, AutoCAD</li>
-                        <li><strong>Engineering Analysis:</strong> Zemax (optical systems), MATLAB, LabVIEW, Finite Element Analysis (FEA)</li>
-                        <li><strong>Programming:</strong> Python (TensorFlow), C++, Arduino</li>
-                        <li><strong>Engineering Skills:</strong> 3D CAD modeling, engineering analysis, experimental design, data acquisition and processing, heat transfer and thermal analysis, optics and sensor systems</li>
-                        <li><strong>Software:</strong> Microsoft Office Suite</li>
+                        <li><strong>Software & Analysis:</strong> SolidWorks, Fusion 360, AutoCAD, MATLAB, LabVIEW, Zemax, KiCad, Python, C++, LaTeX, Linux</li>
+                        <li><strong>Hardware & Instrumentation:</strong> ESP32, Arduino, Load Cells, Force-Sensitive Resistor (FSR) Arrays, Analog Multiplexers (CD74HC4067), Oscilloscopes, Multimeters, RC Telemetry</li>
+                        <li><strong>Fabrication & Engineering:</strong> 3D Printing (PLA, PETG, TPU), CNC Programming (G-code), Manual Mill & Lathe, Soldering, Wire Harnessing, Finite Element Analysis (FEA), Data Acquisition (DAQ) & Signal Processing</li>
                         <li><strong>Languages:</strong> English (fluent), Ukrainian (fluent)</li>
                     </ul>
                 </div>
@@ -763,6 +841,17 @@
     </section>
 
     <script>
+        // Interactive thumbnail switcher for the Exoskeleton project card
+        function swapExoImage(thumbElement) {
+            const mainImg = document.getElementById('exo-main-img');
+            mainImg.src = thumbElement.src;
+            mainImg.alt = thumbElement.alt;
+
+            const siblings = thumbElement.parentElement.querySelectorAll('.thumb');
+            siblings.forEach(img => img.classList.remove('active'));
+            thumbElement.classList.add('active');
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
